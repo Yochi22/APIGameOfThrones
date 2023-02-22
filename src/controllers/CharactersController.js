@@ -16,7 +16,7 @@ exports.postNewCharacter = ((req, res) => {
   });
 });
 exports.deleteRemoveCharacter = ((req, res) => {
-  Character.findOneAndDelete({_id:req.body.id},{
+  Character.findOneAndDelete({_id:req.params.id},{
     name: req.body.name,
     gender: req.body.gender,
     title: req.body.title,
@@ -31,12 +31,12 @@ exports.deleteRemoveCharacter = ((req, res) => {
 })
 
 exports.putCharacterId = ((req, res) => {
-  Character.findOneAndUpdate({_id:req.body.id},{
+  Character.findOneAndUpdate({_id:req.params.id},{
     name: req.body.name,
     gender: req.body.gender,
     title: req.body.title,
     family: req.body.family,
-}, (err)=>{
+}, {new: true}, (err)=>{
     if (!err) {
         res.send('personaje actualizado correctamente')
     } else {
