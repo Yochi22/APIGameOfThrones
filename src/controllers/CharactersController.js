@@ -15,21 +15,32 @@ exports.postNewCharacter = ((req, res) => {
     res.json(result);
   });
 });
-
 exports.deleteRemoveCharacter = ((req, res) => {
-  Character.deleteOne(
-    req.body, (err, result) => {
-    if (err) throw new Error(err);
-    res.json(result);
-  });
-});
+  Character.findOneAndDelete({id:req.body.id},{
+    name: req.body.name,
+    gender: req.body.gender,
+    title: req.body.title,
+    family: req.body.family,
+}, (err)=>{
+    if (!err) {
+        res.send('personaje eliminado correctamente')
+    } else {
+        res.send(err)
+    }
+})
+})
 
 exports.putCharacterId = ((req, res) => {
-  Character.findOneAndDelete(
-    req.body, (err, result) => {
-    if (err) throw new Error(err);
-    res.json(result);
-  });
-});
-
-
+  Character.findOneAndUpdate({id:req.body.id},{
+    name: req.body.name,
+    gender: req.body.gender,
+    title: req.body.title,
+    family: req.body.family,
+}, (err)=>{
+    if (!err) {
+        res.send('personaje actualizado correctamente')
+    } else {
+        res.send(err)
+    }
+})
+})
