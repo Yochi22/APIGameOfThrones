@@ -16,7 +16,7 @@ exports.postNewCharacter = ((req, res) => {
   });
 });
 exports.deleteRemoveCharacter = ((req, res) => {
-  Character.findOneAndDelete({id:req.body.id},{
+  Character.findOneAndDelete({_id:req.body.id},{
     name: req.body.name,
     gender: req.body.gender,
     title: req.body.title,
@@ -31,7 +31,7 @@ exports.deleteRemoveCharacter = ((req, res) => {
 })
 
 exports.putCharacterId = ((req, res) => {
-  Character.findOneAndUpdate({id:req.body.id},{
+  Character.findOneAndUpdate({_id:req.body.id},{
     name: req.body.name,
     gender: req.body.gender,
     title: req.body.title,
